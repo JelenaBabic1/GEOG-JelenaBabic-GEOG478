@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>College Station Weekly Temperature Forecast</title>
+    <script src="https://d3js.org/d3.v4.min.js"></script>
+    <style>
+      #chart {
+        display: flex;
+        justify-content: center;
+      }
+      #chart div {
+        font: 10px sans-serif;
+        background-color: steelblue;
+        text-align: right;
+        padding: 3px;
+        margin: 1px;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="chart"></div>
+    <script>
+      var data = [
+        { day: "Sat", highest: 82, lowest: 67 },
+        { day: "Sun", highest: 81, lowest: 59 },
+        { day: "Mon", highest: 81, lowest: 50 },
+        { day: "Tue", highest: 70, lowest: 47 },
+        { day: "Wed", highest: 77, lowest: 51 },
+        { day: "Thu", highest: 78, lowest: 60 },
+        { day: "Fri", highest: 79, lowest: 66 },
+        { day: "Next Sat", highest: 80, lowest: 66 }
+      ];
+
+      var chart = d3.select("#chart")
+        .selectAll("div")
+        .data(data)
+        .enter().append("div")
+        .style("width", function(d) { return d.highest * 2 + "px"; })
+        .text(function(d) { return "High: " + d.highest + "°F, Low: " + d.lowest + "°F"; });
+    </script>
+  </body>
+</html>
